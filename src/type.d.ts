@@ -1,6 +1,33 @@
-type BoatRampsAction = {
+export type BoatRampsAction = {
     type: string,
-    payload: any
+    payload: Ramps
+};
+
+export type FetchBoatRampsDataAction = {
+    type: string;
+    payload: any;
+  };
+
+
+export type FetchBoatRampsDataErrorAction = {
+    type: string,
+    payload: Error
+};
+export type FetchBoatRampsDataFilterAction = {
+    type: string;
+    payload: any;
+  };
+
+export type BoatRampsViewPortAction = {
+    type: string,
+    payload: BoatRampsViewPortPayload
+};
+
+
+export type BoatRampsViewPortPayload= {
+    latitude: number,
+    longitude: number,
+    zoom: number
 };
 
 type FeatureGeometry = {
@@ -21,30 +48,30 @@ type FeatureProperties = {
     area_: number,
     comments: string,
     documents: string,
-    inspectors: string,
+    inspectors: string | null,
     inspection: string,
-    constructi: string,
+    constructi: string | null,
     record_cre: string,
-    last_updat: string,
+    last_updat: string | null,
     update_dat: string,
-    disposal_d: string,
+    disposal_d: string | null,
     positional: string,
-    level_accu: string,
+    level_accu: string | null,
     owner: string,
-    project_nu: string,
-    file_numbe: string,
-    folder_num: string,
-    drawing_nu: string,
-    survey_num: string,
+    project_nu: string | null,
+    file_numbe: string | null,
+    folder_num: string | null,
+    drawing_nu: string | null,
+    survey_num: string | null,
     condition: number,
     historic_c: number,
     funding_ba: string,
     mi_symbolo: string,
     mi_prinx: number,
-    createuser: string,
-    createdate: string,
-    updateuser: string,
-    updatedate: string,
+    createuser: string | null,
+    createdate: string | null,
+    updateuser: string | null,
+    updatedate: string | null,
     shape_leng: number,
     shape_area: number
 };

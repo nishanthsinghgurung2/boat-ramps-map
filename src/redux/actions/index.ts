@@ -1,30 +1,42 @@
+import { BoatRampsViewPortPayload, FetchBoatRampsDataAction } from "../../type";
+import { filterBoatRampsData } from "../../utils/utils";
 import * as actionType from "./actionTypes";
+// @ts-ignore: Disabled ts lint error for this line.
+import BOAT_RAMPS_DATA from "../../data/boat_ramps.geojson";
 
-
-type FetchBoatRampsAction = {
-    type: string;
-    payload: any;
-  };
-
-
-export const fetchBoatRamps = (payload: any): FetchBoatRampsAction => ({
+export const fetchBoatRamps = (payload: any): FetchBoatRampsDataAction => ({
     type: actionType.FETCH_BOAT_RAMPS_DATA,
     payload
 });
 
-export const fetchBoatRampsData = () => {
-    return async(dispatch: (arg0: { type: any; data: any; }) => any) => {
+export const fetchBoatRampsData = ({ _sw, _ne }: any) => {
+    return async(dispatch: any) => {
         try {
-            const response = await fetch('../../data/boat_ramps.geojson');
-            return dispatch({
+            const response = await fetch(BOAT_RAMPS_DATA,{
+                headers : { 
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                   }
+            });
+            const result = await response.json();
+            const filteredBoatRampsData = filterBoatRampsData(result, _ne, _sw);
+            dispatch({
                 type: actionType.FETCH_BOAT_RAMPS_DATA,
-                data: response.json()
+                payload: filteredBoatRampsData
             });
         } catch (error) {
-            return dispatch({
+            dispatch({
                 type: actionType.FETCH_BOAT_RAMPS_DATA_FAILURE,
-                data: error
+                payload: error
             });
         }
     }
+};
+
+
+export const setBoatRampsMapViewPort = (viewPortData: BoatRampsViewPortPayload) => {
+    return {
+        type: actionType.SET_BOAT_RAMPS_MAP_VIEWPORT,
+        payload: viewPortData
+    };
 };
