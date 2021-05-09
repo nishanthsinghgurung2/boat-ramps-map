@@ -1,4 +1,4 @@
-import { BoatRampsViewPortPayload, FetchBoatRampsDataAction } from "../../type";
+import { BoatRampsViewPortState, Feature, FetchBoatRampsDataAction } from "../../type";
 import { filterBoatRampsData } from "../../utils/utils";
 import * as actionType from "./actionTypes";
 // @ts-ignore: Disabled ts lint error for this line.
@@ -19,7 +19,7 @@ export const fetchBoatRampsData = ({ _sw, _ne }: any) => {
                    }
             });
             const result = await response.json();
-            const filteredBoatRampsData = filterBoatRampsData(result, _ne, _sw);
+            const filteredBoatRampsData: Array<Feature> = filterBoatRampsData(result?.features, _ne, _sw);
             dispatch({
                 type: actionType.FETCH_BOAT_RAMPS_DATA,
                 payload: filteredBoatRampsData
@@ -34,9 +34,35 @@ export const fetchBoatRampsData = ({ _sw, _ne }: any) => {
 };
 
 
-export const setBoatRampsMapViewPort = (viewPortData: BoatRampsViewPortPayload) => {
+export const setBoatRampsMapViewPort = (viewPortData: BoatRampsViewPortState) => {
     return {
         type: actionType.SET_BOAT_RAMPS_MAP_VIEWPORT,
         payload: viewPortData
     };
 };
+
+export const setBoatRampsMapFilter = (filter: boolean) => {
+    return {
+      type: actionType.SET_BOAT_RAMPS_MAP_FILTER,
+      payload: {
+          isFiltered: filter
+      }
+    }
+};
+  
+export const setBoatRampsMapFeaturesFilter = (boatRampsMapFeatures: Array<Feature>) => {
+    return {
+        type: actionType.SET_BOAT_RAMPS_MAP_FEATURES_FILTER,
+        payload: boatRampsMapFeatures
+    }
+
+};
+
+export const setBoatRampsMapChartsColors = (colors: Array<string>) => {
+    return {
+        type: actionType.SET_BOAT_RAMPS_MAP_CHARTS_COLORS,
+        payload: {
+            colors
+        }
+    };
+}; 

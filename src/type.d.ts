@@ -1,7 +1,12 @@
-export type BoatRampsAction = {
+export type BoatRampsMapAction = {
     type: string,
-    payload: Ramps
+    payload: Array<Feature>
 };
+
+export type BoatRampsMapFeaturesState = {
+    features: Array<Feature>,
+    error: any
+ };
 
 export type FetchBoatRampsDataAction = {
     type: string;
@@ -13,18 +18,19 @@ export type FetchBoatRampsDataErrorAction = {
     type: string,
     payload: Error
 };
-export type FetchBoatRampsDataFilterAction = {
-    type: string;
-    payload: any;
-  };
 
 export type BoatRampsViewPortAction = {
     type: string,
-    payload: BoatRampsViewPortPayload
+    payload: BoatRampsViewPortState
+};
+
+export type FetchBoatRampsDataFilterAction = {
+    type: string,
+    payload: BoatRampsMapFeaturesFilterState
 };
 
 
-export type BoatRampsViewPortPayload= {
+export type BoatRampsViewPortState= {
     latitude: number,
     longitude: number,
     zoom: number
@@ -89,3 +95,8 @@ type Ramps = {
     totalFeatures: number,
     features: Array<Feature>
 };
+
+export type BoatRampsMapFeaturesFilterState = {
+    isFiltered: boolean,
+    colors: Array<string>
+}

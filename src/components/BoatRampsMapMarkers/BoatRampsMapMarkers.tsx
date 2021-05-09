@@ -1,7 +1,13 @@
 import React from 'react';
 import { Marker } from 'react-map-gl';
-import { Feature } from '../type';
-import pin from '../../src/assets/images/pin.png';
+import styled from 'styled-components';
+import { Feature } from '../../type';
+import pin from './pin.png';
+
+const PinImg = styled.img`
+    width: 20px;
+    height: 20px;
+`;
 
 type BoatRampsFeaturesProps = {
     boatRampsFeatures: Array<Feature>;
@@ -13,10 +19,12 @@ const BoatRampsMapMarkers = ( { boatRampsFeatures } : BoatRampsFeaturesProps) =>
 
     return (
         <div>
-            {boatRampsFeatures && Array.isArray(boatRampsFeatures) && boatRampsFeatures.map(({ id, geometry }) => {
+            {boatRampsFeatures && 
+            Array.isArray(boatRampsFeatures) && 
+            boatRampsFeatures.map(({ id, geometry }) => {
                 longitude = geometry.coordinates[0][0][0][0];
                 latitude = geometry.coordinates[0][0][0][1];
-                  
+    
                 return (
                     <Marker 
                         key={id}
@@ -24,13 +32,9 @@ const BoatRampsMapMarkers = ( { boatRampsFeatures } : BoatRampsFeaturesProps) =>
                         latitude={latitude}
                         captureClick={true}
                     >
-                        <img 
+                        <PinImg 
                             src={pin}
                             alt='pin'
-                            style={{
-                                borderRadius: '50%',
-                                width: '15px',
-                                height: '15px'}}
                         />
                     </Marker> 
                 );
