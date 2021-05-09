@@ -11,7 +11,6 @@ import { BoatRampsMapFeaturesFilterState, BoatRampsMapFeaturesState, Feature } f
 import { getBoatRampsFeatureMaterialsCount } from "../../utils/utils";
 import { INIT_COLORS } from "../../styles/colors";
 
-
 const BoatRampsMapChartsContainer = styled.div`
     width: 100%;
     display: flex;
@@ -122,7 +121,7 @@ const BoatRampsCharts = () => {
     return (
         <BoatRampsMapChartsContainer>
             {isFiltered? (
-            <RemoveFilterButton onClick={() => {
+            <RemoveFilterButton aria-label='Remove filters' onClick={() => {
                 dispatch(setBoatRampsMapFilter(false))
                 dispatch(setBoatRampsMapChartsColors({ materialsColors: INIT_COLORS, areasColors: INIT_COLORS }));
             }}
@@ -132,12 +131,14 @@ const BoatRampsCharts = () => {
                     data={boatRampsMapFeatureMaterialData}
                     type='pie'
                     options={featureMaterialOptions}
+                    aria-label='Materials Charts'
                 />
 
                 <Pie
                     data={boatRampsMapFeatureAreasData}
                     type='pie'
                     options={featureAreaOptions}
+                    aria-label='Areas Charts'
                 />
             </BoatRampsChart>
         </BoatRampsMapChartsContainer>

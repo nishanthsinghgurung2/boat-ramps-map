@@ -43,8 +43,10 @@ const BoatRampsMap = () => {
                 width="100%"
                 height="100%"
                 ref={boatRampsMapRef}
+                aria-label='Boat ramps map'
                 onViewportChange={
-                    (boatRampsMapViewPort: BoatRampsViewPortState) => dispatch(setBoatRampsMapViewPort(boatRampsMapViewPort))
+                    (boatRampsMapViewPort: BoatRampsViewPortState) => 
+                    dispatch(setBoatRampsMapViewPort(boatRampsMapViewPort))
                 }
             >
                 <BoatRampsMapMarkers boatRampsFeatures={features} />                
