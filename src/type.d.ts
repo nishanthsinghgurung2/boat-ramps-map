@@ -98,5 +98,8 @@ type Ramps = {
 
 export type BoatRampsMapFeaturesFilterState = {
     isFiltered: boolean,
-    colors: Array<string>
+    colors: {
+        materialsColors: Array<string>,
+        areasColors: Array<string>
+    }
 }

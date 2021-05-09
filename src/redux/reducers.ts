@@ -38,7 +38,10 @@ const boatRampsMapViewPortReducer = (state = INIT_BOAT_RAMPS_MAP_VIEWPORT, actio
 
 export const INIT_BOAT_RAMPS_MAP_FEATURES_FILTER: BoatRampsMapFeaturesFilterState = {
     isFiltered: false,
-    colors: INIT_COLORS
+    colors: {
+        materialsColors: INIT_COLORS,
+        areasColors: INIT_COLORS
+    }
 };
 
 const boatRampsMapFeaturesFilteredReducer = (

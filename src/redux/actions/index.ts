@@ -58,11 +58,14 @@ export const setBoatRampsMapFeaturesFilter = (boatRampsMapFeatures: Array<Featur
 
 };
 
-export const setBoatRampsMapChartsColors = (colors: Array<string>) => {
+export const setBoatRampsMapChartsColors = (colors: { 
+    materialsColors: Array<string>,
+    areasColors: Array<string>
+}) => {
     return {
         type: actionType.SET_BOAT_RAMPS_MAP_CHARTS_COLORS,
         payload: {
             colors
         }
     };
-}; 
+};
